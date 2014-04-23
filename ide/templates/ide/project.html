@@ -36,9 +36,9 @@
             <div>
                 <ul class="nav-list" id="sidebar">
                     <li class="nav-header project-name">{{ project.name }}</li>
-                    <li class="nav-header" id="sidebar-pane-settings"><a href="#">Settings</a></li>
-                    <li class="nav-header" id="sidebar-pane-compile"><a href="#">Compilation</a></li>
-                    <li id="sidebar-pane-github" class="nav-header native-only {%if not project.owner.github%}disabled{%endif%}"><a href="#">GitHub</a></li>
+                    <li class="nav-header" id="sidebar-pane-settings"><a href="#settings">Settings</a></li>
+                    <li class="nav-header" id="sidebar-pane-compile"><a href="#compile">Compilation</a></li>
+                    <li id="sidebar-pane-github" class="nav-header native-only {%if not project.owner.github%}disabled{%endif%}"><a href="#github">GitHub</a></li>
                     <li class="nav-header nav-section">Source files <button class="btn btn-small native-only" id="new-source-file">Add C</button> <button class="btn btn-small native-only" id="new-js-file">JS</button></li>
                     <li class="native-only" id="end-source-files"></li>
                     <li class="nav-header nav-section native-only">Resources <button class="btn btn-small" id="sidebar-pane-new-resource">Add new</button></li>
@@ -682,6 +682,7 @@ var DOC_JSON = "{% static 'ide/documentation.json' %}";
 <script src="{% static 'ide/js/csrf.js' %}" type="text/javascript"></script>
 <script src="{% static 'ide/js/cloudpebble.js' %}" type="text/javascript"></script>
 <script src="{% static 'ide/js/sidebar.js' %}" type="text/javascript"></script>
+<script src="{% static 'ide/js/locations.js' %}" type="text/javascript"></script>x
 <script src="{% static 'ide/js/radix.js' %}" type="text/javascript"></script>
 <script src="{% static 'ide/js/editor.js' %}" type="text/javascript"></script>
 <script src="{% static 'ide/js/syntax.js' %}" type="text/javascript"></script>

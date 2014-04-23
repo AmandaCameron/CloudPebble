@@ -2,9 +2,12 @@ CloudPebble.Resources = (function() {
     var project_resources = {};
 
     var add_resource = function(resource) {
-        var li = CloudPebble.Sidebar.AddResource(resource, function() {
+        CloudPebble.Locations.Add('res/' + resource.id, function() {
             edit_resource(resource);
         });
+
+        var li = CloudPebble.Sidebar.AddResource(resource);
+
         update_resource(resource);
         CloudPebble.Settings.AddResource(resource);
     };
@@ -136,6 +139,7 @@ CloudPebble.Resources = (function() {
     };
 
     var edit_resource = function(resource) {
+        //CloudPebble.Locations.Set('res/' + resource.id);
         CloudPebble.Sidebar.SuspendActive();
         if(CloudPebble.Sidebar.Restore('resource-' + resource.id)) return;
         ga('send', 'event', 'resource', 'open');
@@ -319,6 +323,7 @@ CloudPebble.Resources = (function() {
     };
 
     var create_new_resource = function() {
+        CloudPebble.Locations.Set('new/resource');
         CloudPebble.Sidebar.SuspendActive();
         if(CloudPebble.Sidebar.Restore('new-resource')) return;
         var pane = prepare_resource_pane();
@@ -359,6 +364,8 @@ CloudPebble.Resources = (function() {
         },
         Init: function() {
             init();
+
+            CloudPebble.Locations.Add('new/resource', create_new_resource);
         },
         Create: function() {
             create_new_resource();

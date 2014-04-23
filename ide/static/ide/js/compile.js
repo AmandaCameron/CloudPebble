@@ -162,6 +162,8 @@ CloudPebble.Compile = (function() {
             return;
         }
 
+        CloudPebble.Locations.Set('compile');
+
         update_build_history(pane);
         CloudPebble.Sidebar.SetActivePane(pane, 'compile');
         CloudPebble.ProgressBar.Show();
@@ -702,6 +704,8 @@ CloudPebble.Compile = (function() {
         },
         Init: function() {
             init();
+
+            CloudPebble.Locations.Add('compile', show_compile_pane);
         },
         RunBuild: function(callback) {
             run_build(callback);

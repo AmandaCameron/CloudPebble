@@ -95,7 +95,7 @@ CloudPebble.Sidebar = (function() {
             set_main_pane(pane, id, restore_function, destroy_function);
             set_active_menu_entry(id);
         },
-        AddResource: function(resource, on_click) {
+        AddResource: function(resource) {
             var end = $('#end-resources-' + resource.kind);
             if(!end.length) {
                 // Create an appropriate section
@@ -103,17 +103,17 @@ CloudPebble.Sidebar = (function() {
                 end = $('<li id="end-resources-' + resource.kind + '" class="divider">');
                 res_end.before(end);
             }
-            var link = $('<a href="#"></a>').text(resource.file_name).click(on_click);
+            var link = $('<a></a>').text(resource.file_name).attr('href', '#res/' + resource.id);
             var li = $('<li id="sidebar-pane-resource-' + resource.id + '">');
             li.append(link);
             end.before(li);
             return li;
         },
-        AddSourceFile: function(file, on_click) {
+        AddSourceFile: function(file) {
             var end = $('#end-source-files');
-            var link = $('<a href="#"></a>');
+            var link = $('<a></a>');
             link.text(file.name + ' ');
-            link.click(on_click);
+            link.attr('href', '#file/' + file.id);
             var li = $('<li id="sidebar-pane-source-'+file.id+'">');
             li.append(link);
             end.before(li);
@@ -137,9 +137,6 @@ CloudPebble.Sidebar = (function() {
         },
         Init: function() {
             $('#sidebar-pane-new-resource').click(CloudPebble.Resources.Create);
-            $('#sidebar-pane-compile > a').click(CloudPebble.Compile.Show);
-            $('#sidebar-pane-settings > a').click(CloudPebble.Settings.Show);
-            $('#sidebar-pane-github > a').click(CloudPebble.GitHub.Show);
             $('#new-source-file').click(CloudPebble.Editor.Create);
             $('#new-js-file').click(CloudPebble.Editor.DoJSFile);
             init();

@@ -3,10 +3,13 @@ CloudPebble.Settings = (function() {
     var shared_pane = null;
 
     var show_settings_pane = function() {
+        CloudPebble.Locations.Set('settings');
+
         CloudPebble.Sidebar.SuspendActive();
         if(CloudPebble.Sidebar.Restore("settings")) {
             return;
         }
+
         ga('send', 'event', 'project', 'load settings');
         var pane = settings_template;
         shared_pane = pane;
@@ -268,6 +271,7 @@ CloudPebble.Settings = (function() {
         },
         Init: function() {
             settings_template = $('#settings-pane-template').remove().removeClass('hide');
+            CloudPebble.Locations.Add('settings', show_settings_pane);
         },
         AddResource: function(resource) {
             add_resource(resource);

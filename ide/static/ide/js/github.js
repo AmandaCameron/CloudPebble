@@ -10,6 +10,8 @@ CloudPebble.GitHub = (function() {
 
     var show_github_pane = function() {
         if(!USER_SETTINGS.github) return;
+        CloudPebble.Locations.Set('github');
+
         CloudPebble.Sidebar.SuspendActive();
         if(CloudPebble.Sidebar.Restore("github")) {
             return;
@@ -242,6 +244,8 @@ CloudPebble.GitHub = (function() {
                 $('#sidebar-pane-github').addClass('disabled');
                 CloudPebble.Sidebar.SetPopover('github', '', 'GitHub integration can be enabled in your user settings by linking a GitHub account.')
             }
+
+            CloudPebble.Locations.Add('github', show_github_pane);
         },
         Show: function() {
             show_github_pane();

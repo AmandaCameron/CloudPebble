@@ -6,9 +6,11 @@ CloudPebble.Editor = (function() {
     var is_fullscreen = false;
 
     var add_source_file = function(file) {
-        CloudPebble.Sidebar.AddSourceFile(file, function() {
+        CloudPebble.Locations.Add("file/" + file.id,function() {
             edit_source_file(file);
         });
+
+        CloudPebble.Sidebar.AddSourceFile(file);
 
         project_source_files[file.name] = file;
         // If we're adding that one JS file, remove the link to add it.
@@ -19,6 +21,7 @@ CloudPebble.Editor = (function() {
     };
 
     var edit_source_file = function(file) {
+        CloudPebble.Locations.Set('file/' + file.id);
         // See if we already had it open.
         CloudPebble.Sidebar.SuspendActive();
         if(CloudPebble.Sidebar.Restore('source-'+file.id)) {
